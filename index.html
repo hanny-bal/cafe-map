@@ -28,8 +28,13 @@
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 
-    <!-- Leaflet AJAX for loading from file -->
-    <script src="./js/plugins/leaflet.ajax.min.js"></script>
+    <!-- Markercluster -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <!-- actual html body -->
@@ -37,19 +42,11 @@
     <!-- Add some contextual information -->
     <div class="container text-container">
         <h1>Explore Cafés in Salzburg</h1>
-        <p class="lead">
-            Looking for the best places for coffee in Salzburg or looking for inspiration where to go to? I got you covered!
-        </p>
+        <p class="lead">Looking for the best places for coffee in Salzburg or looking for inspiration where to go to? I got you covered!</p>
 
-        <p>
-            Coffee might be one of the best inventions in the world. Its culture was perfected by the uprise of cafés: Cozy, public spaces to relax, chat and enjoy each other's company. During my time in Salzburg, I found that there are plenty of cute cafés around the city. However, they can be hard to find if you don't know about them – and resources are scarce.
-        </p>
-        <p>
-            In this map, I try to visualise all that I've learned about the best cafés in Salzburg during my three years living here. Where are they, where can you go and which ones are good. You can choose between an overview of all cafés in town, my own personal recommendations or delve into the coffee culture of Salzburg by exploring the café density within Salzburg. Enjoy!
-        </p>
-        <p>
-            Cheers, David
-        </p>
+        <p>Coffee might be one of the best inventions in the world. Its culture was perfected by the uprise of cafés: Cozy, public spaces to relax, chat and enjoy each other's company. During my time in Salzburg, I found that there are plenty of cute cafés around the city. However, they can be hard to find if you don't know about them – and resources are scarce.</p>
+        <p>In this map, I try to visualise all that I've learned about the best cafés in Salzburg during my three years living here. Where are they, where can you go and which ones are good. You can choose between an overview of all cafés in town, my own personal recommendations or delve into the coffee culture of Salzburg by exploring the café density within Salzburg. Enjoy!</p>
+        <p>Cheers, David</p>
     </div>
     
     <!-- And then add the map-->
@@ -57,7 +54,7 @@
         <div id="map"></div>
 
         <!-- Load data-->
-        <script src="./data/cafes-osm-preprocessed.geojson"></script>
+        <script src="./js/cafes.js"></script>
         <script src="./js/map.js"></script>
     </div>
 </body>
