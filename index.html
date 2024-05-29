@@ -24,17 +24,23 @@
     <link rel="stylesheet" href="./css/style.css">
      
     <!-- Plugins -->
-    <!-- Fullscreen control plugin -->
+    <!-- fullscreen control plugin -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 
-    <!-- Markercluster -->
+    <!-- marker cluster -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- font awesome markers for leaflet -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+
+    <!-- search bar -->
+    <link rel="stylesheet" href="./css/leaflet-search.css">
+    <script src="./js/leaflet-search.js"></script>
 </head>
 
 <!-- actual html body -->
@@ -43,13 +49,9 @@
     <div class="container text-container">
         <h1>Explore Cafés in Salzburg</h1>
         <p class="lead">Looking for the best places for coffee in Salzburg or looking for inspiration where to go to? I got you covered!</p>
-
-        <p>Coffee might be one of the best inventions in the world. Its culture was perfected by the uprise of cafés: Cozy, public spaces to relax, chat and enjoy each other's company. During my time in Salzburg, I found that there are plenty of cute cafés around the city. However, they can be hard to find if you don't know about them – and resources are scarce.</p>
-        <p>In this map, I try to visualise all that I've learned about the best cafés in Salzburg during my three years living here. Where are they, where can you go and which ones are good. You can choose between an overview of all cafés in town, my own personal recommendations or delve into the coffee culture of Salzburg by exploring the café density within Salzburg. Enjoy!</p>
-        <p>Cheers, David</p>
     </div>
-    
-    <!-- And then add the map-->
+
+    <!-- Then add the map-->
     <div class="container map-container">
         <div id="map"></div>
 
@@ -57,5 +59,15 @@
         <script src="./js/cafes.js"></script>
         <script src="./js/map.js"></script>
     </div>
+
+    <!-- And finally some text -->
+    <div class="container text-container" style="margin-top: 20px;">
+        <p>Coffee might be one of the best inventions in the world. Its culture was perfected by the uprise of cafés: Cozy, public spaces to relax, chat and enjoy each other's company. During my time in Salzburg, I found that there are plenty of cute cafés around the city. However, they can be hard to find if you don't know about them – and resources are scarce.</p>
+        <p>In this map, I try to visualise all that I've learned about the best cafés in Salzburg during my three years living here. Where are they, where can you go and which ones are good. You can choose between an overview of all cafés in town, my own personal recommendations or delve into the coffee culture of Salzburg by exploring the café density within Salzburg. Enjoy!</p>
+        <p>Cheers, David</p>
+        <p><i>Note: PH = Public Holiday</i></p>
+    </div>
+    
+    
 </body>
 </html>
