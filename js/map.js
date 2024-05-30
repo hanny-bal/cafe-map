@@ -131,6 +131,14 @@ ratingLegend.onAdd = function (map) {
 };
 
 
+// ----------- Heatmap layer ----------- //
+// convert the GeoJSON data to a list of coordinates
+var cafeCoordinates = cafes.features.map(feature => [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
+
+// and then create the heatmap layer
+var heatmapLayer = L.heatLayer(cafeCoordinates, {minOpacity: 0.5});
+
+
 // ----------- UI elements ----------- //
 // place zoom and fullscreen buttons at the top right
 map.zoomControl.setPosition('topright');
@@ -139,7 +147,8 @@ map.fullscreenControl.setPosition('topright');
 // create a dictionary that stores the map layers and add a layer control
 var overlayMaps = {
     'All Cafés': overviewLayer,
-    'Recommendations': recommendationLayer
+    'Recommendations': recommendationLayer,
+    'Heatmap': heatmapLayer
 };
 var layerControl = L.control.layers(overlayMaps).addTo(map);
 
@@ -170,8 +179,3 @@ map.addControl(new L.Control.Search({
     layer: overviewLayer,
     propertyName: 'name'
 }));
-
-/*
-TODO:
-- add a heatmap layer using https://github.com/Leaflet/Leaflet.heat?tab=readme-ov-file
-*/

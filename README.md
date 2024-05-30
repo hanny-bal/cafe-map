@@ -16,3 +16,13 @@ However, it contained incoherent information and way too many columns. To reduce
 - Five cafés had already closed and their respective websites were not reachable. I removed those from the data set.
 
 Subsequently, I added columns for my personal rating for the cafés that I have already visited, recommendations and my personal comments. After that, the final data set for the mapping process was ready to go.
+
+## Map Creation
+The map creation was straightforward. I used [Leaflet 1.9.4](https://leafletjs.com/) as described in the documentation and a bunch of plugins to realise my plans. The final map consists of three layers:
+- An overview layer of all cafés in Salzburg,
+- a layer with the cafés I visited, color-coded by rating and including my own comments and recommendations and
+- a heatmap layer to visualise the café density within the city.
+
+Wherever possible, I used a Content Delivery Network (CDN) to include JavaScript and CSS files. The map uses the CartoDB Voyager basemap due to its intuitive design that allows for easy navigation. The main UI elements include zoom buttons, a layer switcher, a fullscreen button, a legend (where needed), a scalebar and a search button.
+
+The map is embedded in a larger HTML page to provide some context for the user.
