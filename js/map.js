@@ -44,7 +44,7 @@ var coffeeMarker = L.AwesomeMarkers.icon({
     markerColor: 'black'
 });
     
-// add the markers to the layer
+// add markers to the layer
 var overviewMarkers = L.geoJson(cafes, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
@@ -70,6 +70,67 @@ var overviewMarkers = L.geoJson(cafes, {
 map.addLayer(overviewLayer);
 
 
+// ----------- Personal recommendations layer ----------- //
+// idea: display the cafés I have visited with a review and recommendations
+// define a color scale for the markers based on review scores
+function getReviewColor(score) {
+    return score === '1/5' ? '#d7191c' :
+           score === '2/5' ? '#fdae61' :
+           score === '3/5' ? '#ffffbf' :
+           score === '4/5' ? '#a6d96a' :
+           score === '5/5' ? '#1a9641' :
+           null;
+}
+
+
+// add a layer with markers
+var recommendationMarkers = L.geoJson(cafes, {
+    filter: function (feature) {
+        if (feature.properties.author_rating != null) { return true }
+    },
+    pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {
+            icon: L.AwesomeMarkers.icon({
+                icon: 'coffee',
+                iconColor: getReviewColor(feature.properties.author_rating),
+                prefix: 'fa',
+                markerColor: 'black'
+            })
+        });
+    },
+    onEachFeature: function (feature, layer) {
+        // <test> ? if true <operation_1> : else <operation_2> is a short-form if statement
+        var address = feature.properties.address ? `${feature.properties.address}` : "Address not available";
+        
+        // create some meaningful popup text
+        var popupContent = `<b>${feature.properties.name}</b><br>` +
+                           `${address}<br>` +
+                           `<b>Rating:</b> ${feature.properties.author_rating}<br>` +
+                           `<b>Comment:</b> ${feature.properties.author_comment}<br>` +
+                           `<b>Recommendation:</b> ${feature.properties.author_recommendation}<br>`;
+                
+        // and add it
+        layer.bindPopup(popupContent);
+    }      
+});
+var recommendationLayer = L.layerGroup([recommendationMarkers])
+
+
+// add a legend
+var ratingLegend = L.control({position: 'bottomleft'});
+ratingLegend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');  // div with class info and legend
+    var ratings = ['1/5', '2/5', '3/5', '4/5', '5/5']
+    div.innerHTML += '<b>Rating</b><br>'
+
+    // loop through the ratings generate a legend line for each
+    for (var i = 0; i < ratings.length; i++) {
+        div.innerHTML += `<i class="fa fa-coffee fa-outline" style="color:${getReviewColor(ratings[i])}"></i> ${ratings[i]}<br>`;
+    }
+    return div;
+};
+
+
 // ----------- UI elements ----------- //
 // place zoom and fullscreen buttons at the top right
 map.zoomControl.setPosition('topright');
@@ -77,7 +138,8 @@ map.fullscreenControl.setPosition('topright');
 
 // create a dictionary that stores the map layers and add a layer control
 var overlayMaps = {
-    'All Cafés': overviewLayer
+    'All Cafés': overviewLayer,
+    'Recommendations': recommendationLayer
 };
 var layerControl = L.control.layers(overlayMaps).addTo(map);
 
@@ -87,6 +149,19 @@ L.control.scale({
     position: 'bottomleft'
 }).addTo(map);
 
+// display the legend from the recommendation layer only if the layer is visible
+recommendationLayer.on('add', function(e) {
+    if (map.hasLayer(recommendationLayer)) {
+        console.log("adding legend")
+        ratingLegend.addTo(map);
+    }
+ });
+ 
+ recommendationLayer.on('remove', function(e) {
+    if (!map.hasLayer(recommendationLayer)) {
+        ratingLegend.remove();
+    }
+ });
 
 
 // ----------- Search bar ----------- //
@@ -98,7 +173,5 @@ map.addControl(new L.Control.Search({
 
 /*
 TODO:
-- add a search bar
-- add recommended layer
 - add a heatmap layer using https://github.com/Leaflet/Leaflet.heat?tab=readme-ov-file
 */
