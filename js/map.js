@@ -120,7 +120,7 @@ var recommendationLayer = L.layerGroup([recommendationMarkers])
 var ratingLegend = L.control({position: 'bottomleft'});
 ratingLegend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');  // div with class info and legend
-    var ratings = ['1/5', '2/5', '3/5', '4/5', '5/5']
+    var ratings = ['5/5', '4/5', '3/5', '2/5', '1/5']
     div.innerHTML += '<b>Rating</b><br>'
 
     // loop through the ratings generate a legend line for each
