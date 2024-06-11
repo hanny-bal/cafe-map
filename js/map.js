@@ -25,10 +25,6 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.pn
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 }).addTo(map);
 
-// add the GeoJSON layer of cafés, including the popup
-// to achieve reasonable popups, we need to loop over every feature and check which values are filled
-// also, we need it to build the main popup text
-
 
 // ----------- All cafés layer ----------- //
 // create a layer with clustering functionality
