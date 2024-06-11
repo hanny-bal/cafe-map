@@ -174,7 +174,7 @@ recommendationLayer.on('add', function(e) {
 
 
 // ----------- Search bar ----------- //
-// add a searcg bar for the main layer
+// add a search bar for the main layer
 map.addControl(new L.Control.Search({
     layer: overviewLayer,
     propertyName: 'name'
